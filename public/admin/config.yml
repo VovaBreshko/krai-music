@@ -2,6 +2,7 @@ backend:
   name: github
   repo: vovabreshko/krai-music
   branch: main
+  auth_methods: [token]
 
 site_url: https://vovabreshko.github.io/krai-music
 display_url: https://vovabreshko.github.io/krai-music
