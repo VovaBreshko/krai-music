@@ -53,7 +53,7 @@ function Equalizer() {
 }
 
 const EQ_HEIGHTS = [22, 40, 30, 48, 34, 54, 26, 42, 36, 50, 30, 44]
-const MARQUEE_ITEMS = ['Новые имена', 'Красноярск', 'Музыкальный лейбл', 'Kray Music']
+const MARQUEE_ITEMS = ['Новые имена', 'Красноярск', 'Музыкальный лейбл', 'Krai Music']
 const MARQUEE_CONTENT = Array.from({ length: 8 }, () => MARQUEE_ITEMS).flat()
 
 interface SectionHeadProps {
