@@ -1,0 +1,23 @@
+{
+  "id": "artist_04fe2e26-09a3-4505-8690-4f40fb327199",
+  "nickname": "ALINK",
+  "verticalImage": "/media/kauj5itq_wu_ntxhc_wzlefwb9ztcrg6gsvfbivq6iiatoupztfv0ztkllul9i7-utzf8sh0wocs5whp3cjqqlhz.jpg",
+  "biography": "Здесь должна быть биография ALINK.",
+  "squareImage": "https://sun9-76.vkuserphoto.ru/s/v1/ig2/Iqy92UvH3CcnYOoZmw7JWCcBgQjrAscKywsPHxOQybyUV_d8FsYfAwRH2i6Qt9w3CGlZA_I3rcw2VhAVAYJlPlfX.jpg?quality=95&as=32x30,48x46,72x69,108x103,160x152,240x229,360x343,480x457,540x514,640x609,720x686,1024x975&from=bu&u=NXNteYVhMUVlsHJEY-Hr5Eg4UtLUa327vDfepDRdXrA&cs=1024x0",
+  "socials": [
+    {
+      "type": "vk",
+      "label": "ВК",
+      "url": "https://vk.ru/a.liink"
+    }
+  ],
+  "featuredTrack": "track_5e183427-8b3a-440b-b201-f9b26dcbf22e",
+  "videos": [
+    {
+      "url": "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+      "cover": "/media/alink-tarantyl-апрель.jpg",
+      "title": "Апрель",
+      "description": "Вместо действительного клипа заполнитель. Здесь должно быть описание клипа и действительная ссылка на видео."
+    }
+  ]
+}

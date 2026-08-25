@@ -1,0 +1,12 @@
+{
+  "id": "track_5e183427-8b3a-440b-b201-f9b26dcbf22e",
+  "title": "Апрель",
+  "authors": [
+    "artist_04fe2e26-09a3-4505-8690-4f40fb327199",
+    "artist_0d22887c-9967-481d-9c99-c4e94485cced"
+  ],
+  "cover": "/media/alink-tarantyl-апрель.jpg",
+  "audio": "/media/alink-tarantyl-апрель.mp3",
+  "releaseDate": "2026-07-05T20:25:00.000+07:00",
+  "description": "Тестовое описание."
+}

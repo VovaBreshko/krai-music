@@ -1,0 +1,18 @@
+{
+  "id": "album_784f3e81-259b-40e8-9301-8b78c7ce71a3",
+  "title": "Mon ami",
+  "authors": [
+    "artist_0d22887c-9967-481d-9c99-c4e94485cced",
+    "artist_04fe2e26-09a3-4505-8690-4f40fb327199"
+  ],
+  "cover": "/media/a87lgw-8ki0.jpg",
+  "releaseDate": "2026-08-20T13:53:00.000+07:00",
+  "description": "Тестовое описание.",
+  "tracks": [
+    "track_5cd12b75-5b25-41fa-88cb-a97bad319ae1",
+    "track_d1dfcead-2ca8-442c-ba39-a31cc3bf56f9",
+    "track_f4464989-84d6-44d7-96a2-8ab5a5ac6808",
+    "track_01fdea93-958e-4a07-8311-fcc1c3427221",
+    "track_1b781dac-0d75-4af6-bd6b-451265ca7b55"
+  ]
+}

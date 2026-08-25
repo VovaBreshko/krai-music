@@ -1,0 +1,855 @@
+.page {
+  display: grid;
+  gap: 3rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 2rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+  color: rgba(207, 203, 203, 0.8);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: #ffffff;
+}
+
+.backLink svg {
+  transition: transform 0.2s ease;
+}
+
+.backLink:hover svg {
+  transform: translateX(-3px);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.5rem;
+  color: #c71d1b;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.75rem;
+  height: 2px;
+  background: linear-gradient(90deg, #c71d1b, transparent);
+  flex-shrink: 0;
+}
+
+.empty {
+  padding: 2rem 1.25rem;
+  border: 1px dashed rgba(207, 203, 203, 0.18);
+  color: rgba(207, 203, 203, 0.7);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.emptyTracks {
+  display: grid;
+  place-items: center;
+  flex: 1 1 auto;
+  width: 100%;
+  padding: 2rem 1.25rem;
+  border: 1px dashed rgba(207, 203, 203, 0.18);
+  color: rgba(207, 203, 203, 0.7);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.trackColumn:has(.emptyTracks) {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.heroImageWrap {
+  justify-self: center;
+  width: 100%;
+  max-width: 26rem;
+}
+
+.heroImage {
+  width: 100%;
+  max-width: 26rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  justify-self: center;
+  border: 1px solid rgba(207, 203, 203, 0.14);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.hero > div {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f5f2f2;
+}
+
+.hero > div > p:not(.eyebrow) {
+  max-width: 36rem;
+  margin: 0;
+  color: rgba(207, 203, 203, 0.76);
+  line-height: 1.7;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.socials a {
+  padding: 0.5rem 1.05rem;
+  border: 1px solid rgba(207, 203, 203, 0.2);
+  color: rgba(207, 203, 203, 0.9);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  border-radius: 999px;
+}
+
+.socials a:hover {
+  border-color: #c71d1b;
+  color: #ffffff;
+  background: rgba(199, 29, 27, 0.12);
+}
+
+.socials a.socialIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border-radius: 999px;
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.socials a.socialIcon svg {
+  display: block;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.sectionHeader > div {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: start;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-weight: 800;
+  color: #f5f2f2;
+}
+
+.trackLayout {
+  display: grid;
+  grid-template-areas:
+    'trackColumn'
+    'featuredBody';
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.trackLayout .featuredTrackCard {
+  grid-area: featuredBody;
+  margin-top: 1.3rem;
+}
+
+.trackLayout.trackLayoutEmpty {
+  grid-template-areas:
+    'trackHeader'
+    'trackColumn'
+    'featuredBody';
+}
+
+.trackHeader {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: start;
+}
+
+.trackLayout.trackLayoutEmpty > .trackHeader {
+  grid-area: trackHeader;
+}
+
+.trackHeader h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-weight: 800;
+  color: #f5f2f2;
+}
+
+.trackColumn {
+  display: grid;
+  gap: 1.2rem;
+  align-self: start;
+  grid-area: trackColumn;
+}
+
+/* ---------- Swiper ---------- */
+.swiper {
+  width: 100%;
+  padding: 0.35rem 0 3rem;
+}
+
+.swiperSlide {
+  height: auto;
+}
+
+.swiper :global(.swiper-button-next),
+.swiper :global(.swiper-button-prev) {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-top: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(207, 203, 203, 0.18);
+  background: rgba(13, 13, 13, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  color: #e8e5e5;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.swiper :global(.swiper-button-prev) {
+  left: 0.45rem;
+}
+
+.swiper :global(.swiper-button-next) {
+  right: 0.45rem;
+}
+
+.swiper :global(.swiper-button-next)::after,
+.swiper :global(.swiper-button-prev)::after {
+  content: '';
+  display: none;
+}
+
+.swiper :global(.swiper-button-next) svg,
+.swiper :global(.swiper-button-prev) svg {
+  display: none;
+}
+
+.swiper :global(.swiper-button-next)::before,
+.swiper :global(.swiper-button-prev)::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -0.275rem 0 0 -0.275rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.swiper :global(.swiper-button-next)::before {
+  transform: rotate(45deg);
+}
+
+.swiper :global(.swiper-button-prev)::before {
+  transform: rotate(-135deg);
+}
+
+.swiper :global(.swiper-button-next):hover,
+.swiper :global(.swiper-button-prev):hover {
+  background: #c71d1b;
+  border-color: #c71d1b;
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(199, 29, 27, 0.45);
+}
+
+.swiper :global(.swiper-button-disabled) {
+  opacity: 0.35;
+}
+
+.swiper :global(.swiper-pagination-bullet) {
+  background: rgba(207, 203, 203, 0.4);
+  opacity: 1;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.swiper :global(.swiper-pagination-bullet-active) {
+  background: #c71d1b;
+  width: 1.4rem;
+}
+
+.swiper :global(.swiper-pagination) {
+  bottom: 0.35rem;
+}
+/* ---------- Video card ---------- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #171717, #121212);
+  border: 1px solid rgba(207, 203, 203, 0.12);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(199, 29, 27, 0.55);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.35);
+}
+
+.card > a:first-child {
+  display: block;
+  overflow: hidden;
+  background: #0e0e0e;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover .image {
+  transform: scale(1.06);
+}
+
+.card h3 {
+  margin: 1rem 1.15rem 0;
+  color: #f5f2f2;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.card p {
+  margin: 0.5rem 1.15rem 0;
+  color: rgba(207, 203, 203, 0.7);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card > a:last-child {
+  width: fit-content;
+  margin: auto 1.15rem 1.15rem;
+  padding-top: 0.6rem;
+}
+
+/* Кнопка «Развернуть» от ExpandableText — прямой потомок карточки.
+   Выравниваем её по левому краю с тем же отступом, что и у текста описания. */
+.card > button {
+  margin-left: 1.15rem;
+}
+
+/* ---------- Tracks ---------- */
+.trackList {
+  display: grid;
+  gap: 0.85rem;
+  scroll-margin-top: 5rem;
+}
+
+.trackCard {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.7rem 0.85rem;
+  background: linear-gradient(180deg, #171717, #141414);
+  border: 1px solid rgba(207, 203, 203, 0.12);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.trackCard:hover {
+  border-color: rgba(199, 29, 27, 0.45);
+}
+
+.trackCardActive,
+.trackCardActive:hover {
+  border-color: rgba(199, 29, 27, 0.7);
+  background: linear-gradient(180deg, rgba(199, 29, 27, 0.16), rgba(199, 29, 27, 0.08));
+  box-shadow: 0 10px 26px rgba(199, 29, 27, 0.14);
+}
+
+.trackCoverWrap {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+}
+
+.trackCover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #0e0e0e;
+}
+
+.coverEq {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(199, 29, 27, 0.3), rgba(13, 13, 13, 0.55));
+}
+
+.trackAuthors {
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackAuthorLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.trackAuthorLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.albumAuthors,
+.albumMeta {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.albumAuthors {
+  color: rgba(255, 255, 255, 0.62);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.albumAuthorLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.albumAuthorLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.trackCard h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #f0eded;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Многоточие наследует цвет контейнера: серое только если в названии есть
+   серый фрагмент (data-tagged="true"), иначе — белое. */
+.trackCard h3[data-tagged='true'] {
+  color: #9a9a9a;
+}
+
+/* Контейнер с текстом внутри карточки не должен мешать колонке сужаться при длинном названии */
+.trackCard > div:not(.trackCoverWrap) {
+  min-width: 0;
+}
+
+.trackCard p {
+  margin: 0.15rem 0 0;
+  color: rgba(207, 203, 203, 0.7);
+  font-size: 0.85rem;
+}
+
+.playButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(207, 203, 203, 0.22);
+  background: transparent;
+  color: #cfcbcb;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.playButton:hover {
+  border-color: #c71d1b;
+  color: #ffffff;
+  background: rgba(199, 29, 27, 0.12);
+}
+
+.playButton svg {
+  color: #c71d1b;
+}
+
+.playButtonActive {
+  border-color: #c71d1b;
+  background: #c71d1b;
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(199, 29, 27, 0.4);
+}
+
+.playButtonActive:hover {
+  background: #c71d1b;
+  color: #ffffff;
+}
+
+.playButtonActive svg {
+  color: #ffffff;
+}
+
+/* ---------- Equalizer ---------- */
+.eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 0.9rem;
+}
+
+.eq span {
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #ff9d9d, #e64545);
+  transform-origin: bottom;
+  animation: eqBounce 0.9s ease-in-out infinite;
+}
+
+.eq span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.eq span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes eqBounce {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid rgba(199, 29, 27, 0.5);
+  background: transparent;
+  color: #ece9e9;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.secondaryButton:hover {
+  background: #c71d1b;
+  border-color: #c71d1b;
+  color: #ffffff;
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.35rem;
+}
+
+.pagination button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  color: #cfcbcb;
+  border: 1px solid rgba(207, 203, 203, 0.24);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: #c71d1b;
+  color: #ffffff;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  min-width: 4.5rem;
+  text-align: center;
+  color: rgba(207, 203, 203, 0.8);
+  font-weight: 600;
+}
+
+/* ---------- Featured track ---------- */
+.featuredTrackCard {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, #171717, #121212);
+  border: 1px solid rgba(199, 29, 27, 0.35);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.featuredTrackCardActive,
+.featuredTrackCardActive:hover {
+  border-color: rgba(199, 29, 27, 0.9);
+  box-shadow: 0 18px 44px rgba(199, 29, 27, 0.22);
+}
+
+.featuredTrackCard .eyebrow {
+  margin-bottom: 0;
+}
+
+.featuredTrackCoverButton {
+  position: relative;
+  display: block;
+  width: min(100%, 26rem);
+  justify-self: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.featuredTrackCover {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.featuredTrackCoverButton:hover .featuredTrackCover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 50px rgba(199, 29, 27, 0.25);
+}
+
+.featuredCoverEq {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(199, 29, 27, 0.28), rgba(13, 13, 13, 0.45));
+  transition: transform 0.35s ease;
+}
+
+.featuredTrackCoverButton:hover .featuredCoverEq {
+  transform: translateY(-3px);
+}
+
+.featuredCoverEq .eq {
+  height: 1.35rem;
+}
+
+.featuredTrackInfo {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.featuredTrackInfo h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #f5f2f2;
+}
+
+.featuredTrackInfo p {
+  margin: 0;
+  color: rgba(207, 203, 203, 0.7);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.featuredTrackInfo .secondaryButton {
+  justify-self: start;
+  margin-top: 0.4rem;
+}
+
+/* ---------- Albums ---------- */
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1.5rem 1.1rem;
+}
+
+.albumCard {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.albumCoverLink {
+  position: relative;
+  display: block;
+  border-radius: 12px;
+}
+
+.albumCover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.albumCard:hover .albumCover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 24px 48px rgba(199, 29, 27, 0.3),
+    0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.albumBody {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.albumBody h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #f5f2f2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.albumTitleLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.albumTitleLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.albumMeta {
+  margin: 0;
+  color: rgba(207, 203, 203, 0.55);
+  font-size: 0.8rem;
+}
+
+.albumOpenLink {
+  justify-self: start;
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid rgba(199, 29, 27, 0.5);
+  background: transparent;
+  color: #ece9e9;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.albumOpenLink:hover {
+  background: #c71d1b;
+  border-color: #c71d1b;
+  color: #ffffff;
+}
+
+@media (min-width: 900px) {
+
+  .hero {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .trackLayout {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    grid-template-areas:
+      'trackColumn featuredBody';
+    column-gap: 2.5rem;
+    row-gap: 1.2rem;
+  }
+
+  .trackLayout.trackLayoutEmpty {
+    grid-template-areas:
+      'trackHeader .'
+      'trackColumn featuredBody';
+  }
+
+  .trackLayout .featuredTrackCard {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq span {
+    animation: none;
+  }
+}

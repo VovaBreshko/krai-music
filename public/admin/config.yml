@@ -1,0 +1,229 @@
+backend:
+  name: github
+  repo: sjmaks/krai-music
+  branch: main
+  base_url: https://sveltia-cms-auth.kraev-maksim2003.workers.dev/
+
+site_url: https://sjmaks.github.io/krai-music
+display_url: https://sjmaks.github.io/krai-music
+media_folder: public/media
+public_folder: /media
+
+locale: 'ru'
+
+collections:
+  - name: artists
+    label: Артисты
+    folder: "content/artists"
+    create: true
+    format: json
+    slug: '{{fields.id}}'
+    identifier_field: nickname
+    fields:
+      - { label: ID, name: id, widget: "uuid", prefix: 'artist_'}
+      - { label: Никнейм, name: nickname, widget: string, pattern: ['^.{1,40}$', "Максимум 40 символов"] }
+      - { label: Биография, name: biography, widget: text, pattern: ['^[\s\S]{0,300}$', 'Максимум 300 символов'] }
+      - { label: Фото 4/6, name: verticalImage, widget: image }
+      - { label: Фото 1/1, name: squareImage, required: false, widget: image }
+      - label: Ссылки на соц. сети
+        name: socials
+        required: false
+        widget: list
+        collapsed: true
+        summary: '{{fields.type}} · {{fields.url}}'
+        fields:
+          - { label: Соц. сеть, name: type, widget: select, default: custom, options: [{ value: 'vk', label: 'ВК' }, { value: 'telegram', label: 'Телеграм' }, { value: 'instagram', label: 'Инстаграм' }, { value: 'x', label: 'X (Twitter)' }, { value: 'facebook', label: 'Facebook' }, { value: 'custom', label: 'Свой вариант (текстом)' }] }
+          - { label: Подпись (для своего варианта), name: label, required: false, widget: string, hint: 'Запишите произвольный текст — ссылка отобразится текстовой кнопкой. Для сети из списка подпись подставляется автоматически.' }
+          - { label: Ссылка, name: url, widget: string }
+      - { label: Видео, name: videos, required: false, widget: list, fields: [{ label: Название, name: title, widget: string, pattern: ['^.{1,40}$', 'Максимум 40 символов'] }, { label: Описание, name: description, widget: text, pattern: ['^[\s\S]{0,300}$', 'Максимум 300 символов'] }, { label: Ссылка, name: url, widget: string }, { label: Обложка, name: cover, widget: image }] }
+      - label: Выделенный трек
+        name: featuredTrack
+        required: false
+        widget: relation
+        collection: tracks
+        search_fields: [title]
+        value_field: id
+        display_fields: ["title"]
+        multiple: false
+      - label: Выделенный альбом (новый релиз может быть альбомом)
+        name: featuredAlbum
+        required: false
+        widget: relation
+        collection: albums
+        search_fields: [title]
+        value_field: id
+        display_fields: ["title"]
+        multiple: false
+
+  - name: tracks
+    label: Треки
+    folder: "content/tracks"
+    create: true
+    format: json
+    slug: '{{fields.id}}'
+    fields:
+      - { label: ID, name: id, widget: "uuid", prefix: 'track_'}
+      - { label: Название, name: title, widget: string, pattern: ['^.{1,40}$', "Максимум 40 символов"] }
+      - label: Авторы
+        name: authors
+        widget: relation
+        collection: artists
+        search_fields: [nickname]
+        value_field: id
+        display_fields: [nickname]
+        multiple: true
+      - { label: Обложка, name: cover, widget: image }
+      - { label: Аудио, name: audio, widget: file }
+      - { label: Дата релиза, name: releaseDate, widget: datetime }
+      - { label: Описание, name: description, required: false, widget: text, pattern: ['^[\s\S]{0,300}$', 'Максимум 300 символов'] }
+
+  - name: albums
+    label: Альбомы
+    folder: "content/albums"
+    create: true
+    format: json
+    slug: '{{fields.id}}'
+    fields:
+      - { label: ID, name: id, widget: "uuid", prefix: 'album_'}
+      - { label: Название, name: title, widget: string, pattern: ['^.{1,40}$', "Максимум 40 символов"] }
+      - label: Авторы
+        name: authors
+        widget: relation
+        collection: artists
+        search_fields: [nickname]
+        value_field: id
+        display_fields: [nickname]
+        multiple: true
+      - { label: Обложка, name: cover, widget: image }
+      - { label: Дата релиза, name: releaseDate, widget: datetime }
+      - { label: Описание, name: description, widget: text, pattern: ['^[\s\S]{0,500}$', 'Максимум 500 символов'] }
+      - label: Треки
+        name: tracks
+        widget: relation
+        collection: tracks
+        search_fields: [title]
+        value_field: id
+        display_fields: [title]
+        multiple: true
+
+  - name: events
+    label: Мероприятия
+    folder: "content/events"
+    create: true
+    format: json
+    slug: '{{fields.id}}'
+    fields:
+      - { label: ID, name: id, widget: "uuid", prefix: 'event_'}
+      - { label: Название, name: title, widget: string, pattern: ['^.{1,60}$', "Максимум 60 символов"] }
+      - { label: Описание, name: description, widget: text, pattern: ['^[\s\S]{0,1000}$', 'Максимум 1000 символов'] }
+      - { label: Изображение, name: image, widget: image }
+      - { label: Дата, name: date, widget: datetime }
+      - { label: Место, name: location, widget: string, pattern: ['^.{1,60}$', "Максимум 60 символов"] }
+      - { label: Ссылки, name: links, required: false, widget: list, fields: [{ label: Название, name: label, widget: string }, { label: Ссылка, name: url, widget: string }] }
+
+  - name: services
+    label: Услуги
+    folder: "content/services"
+    create: true
+    format: json
+    slug: '{{fields.id}}'
+    fields:
+      - { label: ID, name: id, widget: "uuid", prefix: 'service_'}
+      - { label: Название, name: title, widget: string, pattern: ['^.{1,40}$', "Максимум 40 символов"] }
+      - { label: Короткое описание (на карточке), name: shortDescription, widget: text, pattern: ['^.{1,100}$', "Максимум 100 символов"], required: false, hint: 'Краткое описание услуги, отображается на странице «Услуги» рядом с кнопкой «Подробнее».' }
+      - { label: Подробное описание, name: description, widget: richtext, minimal: true, hint: 'Полное описание услуги. Открывается во всплывающем окне по кнопке «Подробнее».' }
+      - { label: Изображение, name: image, widget: image }
+
+  - name: homepage
+    label: Содержимое страниц
+    files:
+      - name: homepage
+        label: Главная страница
+        file: content/homepage.json
+        format: json
+        fields:
+          - { label: Заголовок, name: heroTitle, widget: string, pattern: ['^.{1,40}$', "Максимум 40 символов"] }
+          - { label: Подзаголовок, name: heroSubtitle, widget: text, pattern: ['^[\s\S]{0,300}$', 'Максимум 300 символов'] }
+          - label: Выделенные артисты
+            name: featuredArtists
+            widget: relation
+            collection: artists
+            search_fields: [nickname]
+            value_field: id
+            display_fields: [nickname]
+            multiple: true
+            required: false
+          - label: Недавние альбомы
+            name: featuredAlbums
+            widget: relation
+            collection: albums
+            search_fields: [title]
+            value_field: id
+            display_fields: [title]
+            multiple: true
+            required: false
+          - label: Выделенные треки
+            name: featuredTracks
+            widget: relation
+            collection: tracks
+            search_fields: [title]
+            value_field: id
+            display_fields: [title]
+            multiple: true
+            required: false
+          - label: Выделенные мероприятия
+            name: featuredEvents
+            widget: relation
+            collection: events
+            search_fields: [title]
+            value_field: id
+            display_fields: [title]
+            multiple: true
+            required: false
+      - name: contacts
+        label: Контакты
+        file: content/contacts.json
+        format: json
+        fields:
+          - { label: Email, name: email, widget: string }
+          - { label: Номер телефона, name: phone, widget: string }
+          - { label: Адрес, name: address, widget: string }
+          - label: 'Ссылки на соц. сети'
+            name: socials
+            required: false
+            widget: list
+            collapsed: true
+            summary: '{{fields.type}} · {{fields.url}}'
+            fields:
+              - { label: Соц. сеть, name: type, widget: select, default: custom, options: [{ value: 'vk', label: 'ВК' }, { value: 'telegram', label: 'Телеграм' }, { value: 'instagram', label: 'Инстаграм' }, { value: 'x', label: 'X (Twitter)' }, { value: 'facebook', label: 'Facebook' }, { value: 'custom', label: 'Свой вариант (иконка ссылки)' }] }
+              - { label: Подпись, name: label, required: false, widget: string, hint: 'Отображается рядом с иконкой. Для сети из списка можно оставить пустым — подпись подставится автоматически.' }
+              - { label: Ссылка, name: url, widget: string }
+      - name: radio
+        label: Радио
+        file: content/radio.json
+        format: json
+        fields:
+          - label: Альбомы лейбла
+            name: albums
+            widget: relation
+            collection: albums
+            search_fields: [title]
+            value_field: id
+            display_fields: [title]
+            multiple: true
+            required: false
+  - name: legal
+    label: Правовые документы
+    files:
+      - name: privacy_policy
+        label: Политика конфиденциальности
+        file: content/legal/privacy_policy.json
+        format: json
+        fields:
+          - { label: Политика конфиденциальности, name: body, widget: richtext, hint: 'Текст в формате Markdown: ## заголовки, - списки, **жирный**, [ссылки](url), > цитаты.' }
+      - name: use_rules
+        label: Условия использования
+        file: content/legal/use_rules.json
+        format: json
+        fields:
+          - { label: Условия использования, name: body, widget: richtext, hint: 'Текст в формате Markdown: ## заголовки, - списки, **жирный**, [ссылки](url), > цитаты.' }

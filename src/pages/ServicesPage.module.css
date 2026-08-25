@@ -1,0 +1,234 @@
+.page {
+  display: grid;
+  gap: 2.25rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 2rem;
+}
+
+.header {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f5f2f2;
+}
+
+.subtitle {
+  max-width: 36rem;
+  margin: 0.5rem 0 0;
+  color: rgba(207, 203, 203, 0.76);
+  line-height: 1.6;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.5rem;
+  color: #c71d1b;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.75rem;
+  height: 2px;
+  background: linear-gradient(90deg, #c71d1b, transparent);
+  flex-shrink: 0;
+}
+
+.list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1rem;
+  border: 1px solid rgba(207, 203, 203, 0.12);
+  background: linear-gradient(180deg, #171717, #121212);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(199, 29, 27, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+}
+
+.card > a:first-child {
+  display: block;
+  overflow: hidden;
+  background: #0e0e0e;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.content {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.content h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #f5f2f2;
+}
+
+.content > p {
+  margin: 0;
+  color: rgba(207, 203, 203, 0.72);
+  line-height: 1.6;
+}
+
+/* Короткое описание на карточке: максимум 3 строки, обрезается с многоточием. */
+.summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  margin: 0;
+  color: rgba(207, 203, 203, 0.72);
+  line-height: 1.6;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  justify-self: start;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, #e23330, #a51614);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(199, 29, 27, 0.3);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  border-radius: 999px;
+}
+
+.link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(199, 29, 27, 0.4);
+}
+
+.link svg {
+  transition: transform 0.2s ease;
+}
+
+.link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ---------- Модальное окно с подробным описанием ---------- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(8, 8, 8, 0.72);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modal {
+  width: min(640px, 100%);
+  max-height: min(80vh, 100%);
+  overflow: auto;
+  padding: 1.9rem;
+  background: linear-gradient(180deg, #191919, #101010);
+  border: 1px solid rgba(199, 29, 27, 0.3);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modalHeader h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #f5f2f2;
+}
+
+.modalClose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(207, 203, 203, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(207, 203, 203, 0.85);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.modalClose svg {
+  display: block;
+}
+
+.modalClose:hover {
+  border-color: #c71d1b;
+  color: #ffffff;
+  background: rgba(199, 29, 27, 0.12);
+}
+
+.modalBody {
+  color: rgba(207, 203, 203, 0.82);
+  line-height: 1.7;
+}
+
+.reverse {
+  direction: rtl;
+}
+
+.reverse > * {
+  direction: ltr;
+}
+
+@media (min-width: 768px) {
+  .card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+  }
+
+  .reverse .content {
+    padding-left: 5rem;
+  }
+}

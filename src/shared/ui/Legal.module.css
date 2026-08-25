@@ -1,0 +1,147 @@
+.page {
+  display: grid;
+  gap: 2.25rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 2rem;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f5f2f2;
+}
+
+.subtitle {
+  max-width: 42rem;
+  margin: 0.5rem 0 0;
+  color: rgba(207, 203, 203, 0.76);
+  line-height: 1.6;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.5rem;
+  color: #c71d1b;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.75rem;
+  height: 2px;
+  background: linear-gradient(90deg, #c71d1b, transparent);
+  flex-shrink: 0;
+}
+
+.lastUpdated {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: rgba(207, 203, 203, 0.55);
+}
+
+/* ---------- Document ---------- */
+.document {
+  color: rgba(207, 203, 203, 0.82);
+  line-height: 1.7;
+}
+
+.section {
+  scroll-margin-top: 5rem;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin: 0 0 0.6rem;
+}
+
+.sectionNumber {
+  flex-shrink: 0;
+  color: #c71d1b;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.sectionHead h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  color: #f5f2f2;
+  font-weight: 800;
+}
+
+.section p {
+  margin: 0 0 0.85rem;
+}
+
+.section p:last-child {
+  margin-bottom: 0;
+}
+
+.section ul {
+  margin: 0 0 0.85rem;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.section ul:last-child {
+  margin-bottom: 0;
+}
+
+.section li::marker {
+  color: #c71d1b;
+}
+
+.section strong {
+  color: #f5f2f2;
+  font-weight: 700;
+}
+
+.section a {
+  color: #ff6a62;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.section a:hover {
+  color: #ffffff;
+}
+
+/* ---------- Тултип-сноски по 152-ФЗ ---------- */
+.note {
+  margin: 0.4rem 0 0.85rem;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid #c71d1b;
+  background: rgba(199, 29, 27, 0.07);
+  color: rgba(207, 203, 203, 0.72);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.notice {
+  margin: 0;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(199, 29, 27, 0.35);
+  background: linear-gradient(180deg, rgba(199, 29, 27, 0.08), rgba(199, 29, 27, 0.03));
+  color: rgba(207, 203, 203, 0.85);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+/* Полная ширина доступного контейнера — без узкой «юридической» колонки. */

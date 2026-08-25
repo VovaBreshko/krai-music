@@ -1,0 +1,474 @@
+.player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  background: rgba(16, 16, 16, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 -18px 60px rgba(0, 0, 0, 0.55);
+  animation: playerIn 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+@keyframes playerIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ Тонкая полоса прогресса сверху ============ */
+.topTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 16px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.topLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 0 0 6px 6px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+  pointer-events: none;
+  transition: height 0.2s ease;
+}
+
+.topTrack:hover .topLine {
+  height: 7px;
+}
+
+.topLineFill {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(90deg, #f25c5c, #c71d1b);
+  box-shadow: 0 0 14px rgba(242, 92, 92, 0.75);
+  transition: width 0.06s linear;
+}
+
+.topInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ============ Корпус плеера ============ */
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1.25rem;
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 0.7rem 1.25rem 0.85rem;
+}
+
+/* ----- Трек слева ----- */
+.trackInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.coverLink {
+  display: block;
+  line-height: 0;
+  border-radius: 10px;
+}
+
+.cover {
+  width: 3.35rem;
+  height: 3.35rem;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  max-width: none;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.coverLink:hover .cover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(199, 29, 27, 0.5);
+}
+
+.trackMeta {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Ограничиваем ширину, чтобы длинное название не вылезало за колонку */
+  max-width: 100%;
+}
+
+/* Многоточие наследует цвет контейнера. Если в названии есть серый фрагмент,
+   контейнер получает data-tagged="true" — красим его в серый, чтобы обрезанное
+   «…» было серым. Без фрагмента контейнер белый, и «…» остаётся белым. */
+.title[data-tagged='true'] {
+  color: #9a9a9a;
+}
+
+/* ----- Marquee-прокрутка длинного названия ----- */
+.marqueeInner {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.scrolling .marqueeInner {
+  animation: marqueePingPong 8s ease-in-out infinite;
+}
+
+/* Бегущая строка с паузой ~1 сек на каждом краю:
+   0–6%   — пауза в начале,
+   6–50%  — прокат к концу,
+   50–56% — пауза в конце,
+   56–100% — возврат к началу. */
+@keyframes marqueePingPong {
+  0% {
+    transform: translateX(0);
+  }
+  6% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(calc(var(--marquee-distance, 12rem) * -1));
+  }
+  56% {
+    transform: translateX(calc(var(--marquee-distance, 12rem) * -1));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.authors {
+  margin-top: 0.1rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artistLink {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.artistLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ----- Центр: управление ----- */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.roundButton,
+.stateButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.roundButton:hover,
+.stateButton:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+}
+
+.roundButton:active,
+.stateButton:active {
+  transform: scale(0.92);
+}
+
+.stateButton.active {
+  color: #f25c5c;
+}
+
+.playButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  border: 0;
+  background: linear-gradient(135deg, #f25c5c, #c71d1b);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(199, 29, 27, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.playButton .playIcon {
+  margin-left: 2px;
+}
+
+.playButton .pauseIcon {
+  margin-left: 0;
+}
+
+.playButton:hover {
+  transform: scale(1.09);
+  box-shadow: 0 10px 26px rgba(199, 29, 27, 0.55);
+  filter: brightness(1.08);
+}
+
+.playButton:active {
+  transform: scale(0.95);
+}
+
+/* ----- Время по краям плеера ----- */
+.leftGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+  justify-self: stretch;
+  /* Тень обложки не должна обрезаться сверху/снизу: текст уже обрезается
+     внутри .title (ellipsis) и .trackMeta, поэтому здесь clipping не нужен. */
+}
+
+.rightGroup {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.9rem;
+  min-width: 0;
+  justify-self: stretch;
+}
+
+.timeText {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-variant-numeric: tabular-nums;
+  min-width: 2.6rem;
+  text-align: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ----- Правая часть: громкость и свернуть ----- */
+.utilities {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.volumeWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.volumeTrack {
+  position: relative;
+  width: 5.5rem;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.volumeLine {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+}
+
+.volumeLineFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #f5f2f2;
+  transition: width 0.06s ease, background 0.2s ease;
+}
+
+.volumeTrack:hover .volumeLineFill {
+  background: linear-gradient(90deg, #f25c5c, #c71d1b);
+}
+
+.volumeInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.closeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.62);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+/* ============ Адаптивность ============ */
+@media (max-width: 980px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .center {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .volumeTrack {
+    width: 4rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.45rem 1rem;
+    padding: 0.55rem 1rem 0.7rem;
+  }
+
+  /* Верхняя строка: обложка+название слева, закрыть+длительность справа */
+  .leftGroup {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    min-width: 0;
+    /* Название уже обрезается внутри .title (ellipsis) и .trackMeta,
+       так что обложка может свободно «светиться» тенью по вертикали. */
+  }
+
+  .center {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: center;
+  }
+
+  .rightGroup {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .cover {
+    width: 3.1rem;
+    height: 3.1rem;
+    flex-shrink: 0;
+  }
+
+  .roundButton,
+  .stateButton {
+    width: 1.9rem;
+    height: 1.9rem;
+    flex-shrink: 0;
+  }
+
+  .playButton {
+    width: 2.3rem;
+    height: 2.3rem;
+    flex-shrink: 0;
+  }
+
+  .utilities {
+    gap: 0.5rem;
+  }
+
+  /* На мобильных громкость контролирует сам телефон — ползунок не нужен */
+  .volumeWrap {
+    display: none;
+  }
+
+  .closeButton {
+    width: 2.1rem;
+    height: 2.1rem;
+    flex-shrink: 0;
+  }
+
+  .timeText {
+    min-width: 2.2rem;
+    flex-shrink: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .player {
+    animation: none;
+  }
+
+  .scrolling .marqueeInner {
+    animation: none;
+  }
+}

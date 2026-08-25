@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>КрайMusic</title>
+  <script>
+    // GitHub Pages отдаёт этот файл для любого несуществующего пути внутри
+    // сайта (в т.ч. для клиентских маршрутов SPA). Сохраняем исходный URL
+    // и перенаправляем на главную — index.html восстановит путь из
+    // sessionStorage и отрисует нужную страницу.
+    (function () {
+      try {
+        var url = location.href
+        sessionStorage.setItem('redirect', url)
+      } catch (e) {
+        // sessionStorage может быть недоступен (строгие настройки приватности) —
+        // в этом случае просто остаёмся на главной.
+      }
+      location.replace('/krai-music/')
+    })()
+  </script>
+</head>
+
+<body>
+  <p>Переход на сайт…</p>
+</body>
+
+</html>

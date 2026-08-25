@@ -1,0 +1,41 @@
+.layout {
+  min-height: 100vh;
+  overflow-x: clip;
+  background: #111111;
+  color: #cfcbcb;
+}
+
+.main {
+  padding: 0 1.5rem 7rem;
+}
+
+.container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+/* Full-bleed (например, экран загрузки PageSkeleton) — без padding и без ограничения ширины */
+.main.mainFullBleed {
+  padding: 0;
+}
+
+.containerFullBleed {
+  width: 100%;
+  max-width: none;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: 0 2rem 7rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .main {
+    padding: 0 3rem 7rem;
+  }
+}

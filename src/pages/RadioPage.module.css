@@ -1,0 +1,981 @@
+.page {
+  display: grid;
+  gap: 3rem;
+  padding: 2.5rem 0 2rem;
+}
+
+/* ===== Крупный баннер как на главной Яндекс Музыки ===== */
+.billboard {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  align-items: center;
+  gap: 2rem;
+  padding: clamp(2rem, 5vw, 3.8rem);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(90% 150% at 90% -20%, rgba(242, 92, 92, 0.5), transparent 55%),
+    radial-gradient(80% 130% at 0% 120%, rgba(123, 47, 247, 0.34), transparent 55%),
+    radial-gradient(60% 100% at 100% 110%, rgba(199, 29, 27, 0.35), transparent 60%),
+    linear-gradient(135deg, #1d0f12 0%, #14090c 55%, #15081d 100%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.billboard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 50% 50%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 90% at 50% 50%, #000 30%, transparent 75%);
+}
+
+.billboardRing,
+.billboardRingSecond {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.billboardRing {
+  width: 24rem;
+  height: 24rem;
+  top: -9rem;
+  right: 5rem;
+}
+
+.billboardRing::after {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.billboardRingSecond {
+  width: 13rem;
+  height: 13rem;
+  bottom: -5rem;
+  left: -3rem;
+}
+
+.billboardContent {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.05rem;
+  justify-items: start;
+}
+
+.billboardKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.38rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(242, 92, 92, 0.35);
+  background: rgba(199, 29, 27, 0.16);
+  color: #ff9d9d;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.billboardTitle {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: #f5f2f2;
+  margin: 0;
+}
+
+.billboardTitle span {
+  background: linear-gradient(90deg, #ff9d90, #e64545 55%, #ff7a6a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.billboardText {
+  max-width: 34rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.billboardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.primaryBtn,
+.ghostBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.primaryBtn {
+  background: linear-gradient(135deg, #f25c5c, #c71d1b);
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(199, 29, 27, 0.45);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(199, 29, 27, 0.6);
+}
+
+.primaryBtn:disabled,
+.ghostBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.ghostBtn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ece9e9;
+}
+
+.ghostBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(242, 92, 92, 0.55);
+  transform: translateY(-2px);
+}
+
+
+/* ----- Арт: виниловая пластинка и эквалайзер ----- */
+.billboardArt {
+  position: relative;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  min-height: 19rem;
+}
+
+.vinylRing {
+  position: absolute;
+  width: clamp(20rem, 34vw, 27rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(199, 29, 27, 0.35);
+  animation: spinReverse 44s linear infinite;
+}
+
+.vinyl {
+  position: relative;
+  width: clamp(15rem, 25vw, 19rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background:
+    repeating-radial-gradient(circle, #1c1c1c 0 2px, #101010 2px 4px),
+    radial-gradient(circle, #262626 0 26%, #0d0d0d 26% 100%);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.5),
+    0 0 120px rgba(199, 29, 27, 0.12),
+    inset 22px 0 40px rgba(255, 255, 255, 0.04);
+  animation: spin 18s linear infinite;
+}
+
+.vinylLabel {
+  position: relative;
+  width: 36%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 32% 28%, #be271f, #670a08 70%);
+  box-shadow:
+    inset 0 0 0 6px rgba(0, 0, 0, 0.28),
+    0 0 0 2px rgba(255, 255, 255, 0.75);
+}
+
+.vinylLogo {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 4px rgba(0, 0, 0, 1));
+}
+
+.vinylLabel::after {
+  content: '';
+  position: absolute;
+  width: 7%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #000, #1a1a1a);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.signalDot {
+  position: absolute;
+  top: 6%;
+  left: 6%;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: #f25c5c;
+  box-shadow: 0 0 16px rgba(242, 92, 92, 0.9);
+}
+
+.signalDot::before {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 92, 92, 0.7);
+  animation: signalPing 2s ease-out infinite;
+}
+
+@keyframes signalPing {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.eqBig {
+  position: absolute;
+  bottom: 4%;
+  right: 4%;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 3rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eqBig span {
+  width: 7px;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ffb3a8, #e64545);
+  transform-origin: bottom;
+  animation: eqBounce 1s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.eqBig span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.eqBig span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.eqBig span:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.eqBig span:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+.eqBigActive span {
+  animation-play-state: running;
+}
+
+.eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 0.9rem;
+}
+
+.eq span {
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #ff9d9d, #e64545);
+  transform-origin: bottom;
+  animation: eqBounce 0.9s ease-in-out infinite;
+}
+
+.eq span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.eq span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes eqBounce {
+
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* ===== Фильтр по артистам ===== */
+.filters {
+  position: relative;
+  display: inline-block;
+}
+
+.filterTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  min-width: 12rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filterTrigger:hover {
+  border-color: rgba(242, 92, 92, 0.6);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.filterTriggerOpen {
+  border-color: rgba(242, 92, 92, 0.7);
+  box-shadow: 0 4px 14px rgba(199, 29, 27, 0.48);
+}
+
+.filterDropdown {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  left: 0;
+  z-index: 30;
+  min-width: 16rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 14, 18, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6);
+  transform-origin: top left;
+  padding: 0.6rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.filterSearch {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.filterSearch::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.filterSearch:focus {
+  border-color: rgba(242, 92, 92, 0.6);
+}
+
+.filterOptions {
+  overflow-y: auto;
+  max-height: 13rem;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.filterOptions button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 9px;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.filterOptions button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.filterOptions button.filterOptionActive {
+  background: linear-gradient(135deg, #f25c5c, #a51614);
+  color: #ffffff;
+}
+
+.filterEmpty {
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0.55rem 0.85rem;
+  font-size: 0.88rem;
+}
+
+/* ===== Заголовки секций ===== */
+.section {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.eyebrow {
+  color: #f25c5c;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin: 0 0 0.45rem;
+}
+
+.sectionTitle {
+  color: #f5f2f2;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.empty {
+  color: rgba(255, 255, 255, 0.5);
+  padding: 1rem 0;
+}
+
+/* ===== Сетка релизов (карточки-обложки) ===== */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 1.6rem 1.2rem;
+}
+
+.albumCard {
+  min-width: 0;
+}
+
+.albumCoverWrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.albumCard:hover .albumCoverWrap {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.6);
+}
+
+.albumCover {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.albumCard:hover .albumCover {
+  transform: scale(1.06);
+}
+
+.albumCoverWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.55));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.albumCard:hover .albumCoverWrap::after {
+  opacity: 1;
+}
+
+.albumPlay {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f25c5c, #a51614);
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 12px 28px rgba(199, 29, 27, 0.5);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.albumPlay:hover {
+  box-shadow: 0 16px 34px rgba(199, 29, 27, 0.65);
+  transform: translateY(-2px) !important;
+}
+
+.albumCard:hover .albumPlay,
+.albumPlayPinned {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.albumEq {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  padding: 0.4rem 0.5rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+.albumTitle {
+  color: #f5f2f2;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  margin: 0.8rem 0 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.albumAuthors,
+.albumMeta {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.albumAuthors {
+  color: rgba(255, 255, 255, 0.62);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.albumAuthorLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.albumAuthorLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.albumMeta {
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 0.2rem;
+}
+
+/* ===== Карусель альбомов ===== */
+.swiper {
+  width: 100%;
+  padding: 0.35rem 0 3rem;
+}
+
+.swiperSlide {
+  height: auto;
+}
+
+.swiper :global(.swiper-button-next),
+.swiper :global(.swiper-button-prev) {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-top: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(207, 203, 203, 0.18);
+  background: rgba(13, 13, 13, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  color: #e8e5e5;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.swiper :global(.swiper-button-prev) {
+  left: 0.45rem;
+}
+
+.swiper :global(.swiper-button-next) {
+  right: 0.45rem;
+}
+
+.swiper :global(.swiper-button-next)::after,
+.swiper :global(.swiper-button-prev)::after {
+  content: '';
+  display: none;
+}
+
+.swiper :global(.swiper-button-next) svg,
+.swiper :global(.swiper-button-prev) svg {
+  display: none;
+}
+
+.swiper :global(.swiper-button-next)::before,
+.swiper :global(.swiper-button-prev)::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -0.275rem 0 0 -0.275rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.swiper :global(.swiper-button-next)::before {
+  transform: rotate(45deg);
+}
+
+.swiper :global(.swiper-button-prev)::before {
+  transform: rotate(-135deg);
+}
+
+.swiper :global(.swiper-button-next):hover,
+.swiper :global(.swiper-button-prev):hover {
+  background: #c71d1b;
+  border-color: #c71d1b;
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(199, 29, 27, 0.45);
+}
+
+.swiper :global(.swiper-button-disabled) {
+  opacity: 0.35;
+}
+
+.swiper :global(.swiper-pagination-bullet) {
+  background: rgba(207, 203, 203, 0.4);
+  opacity: 1;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.swiper :global(.swiper-pagination-bullet-active) {
+  background: #c71d1b;
+  width: 1.4rem;
+}
+
+.swiper :global(.swiper-pagination) {
+  bottom: 0.35rem;
+}
+
+/* ===== Пагинация ===== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.35rem;
+}
+
+.pagination button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  color: #cfcbcb;
+  border: 1px solid rgba(207, 203, 203, 0.24);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: #c71d1b;
+  color: #ffffff;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  min-width: 4.5rem;
+  text-align: center;
+  color: rgba(207, 203, 203, 0.8);
+  font-weight: 600;
+}
+
+/* ===== Список треков ===== */
+.trackList {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.025);
+  overflow: hidden;
+  scroll-margin-top: 5rem;
+}
+
+.trackRow {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr) 7.5rem 2.6rem;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.trackRow+.trackRow {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.trackRow:hover {
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.trackRowActive {
+  background: rgba(199, 29, 27, 0.13);
+}
+
+.trackRowActive:hover {
+  background: rgba(199, 29, 27, 0.18);
+}
+
+.trackIndex {
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.trackIndex .eq {
+  height: 1rem;
+}
+
+.trackMain {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.trackCover {
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.trackText {
+  min-width: 0;
+}
+
+.trackTitle {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Многоточие наследует цвет контейнера: серое только когда в названии есть
+   серый фрагмент (контейнер получил data-tagged="true"), иначе — белое. */
+.trackTitle[data-tagged='true'] {
+  color: #9a9a9a;
+}
+
+.trackAuthors {
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackAuthorLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.trackAuthorLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.trackDate {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.trackAction {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.85);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.trackAction .playIcon {
+  font-size: 1.05rem;
+  margin-left: 2px;
+}
+
+.trackAction .pauseIcon {
+  font-size: 1.05rem;
+}
+
+.trackRow:hover .trackAction {
+  background: rgba(199, 29, 27, 0.25);
+  color: #ffffff;
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 980px) {
+  .billboard {
+    grid-template-columns: 1fr;
+  }
+
+  .billboardArt {
+    min-height: 14rem;
+  }
+
+  .trackRow {
+    grid-template-columns: 2rem minmax(0, 1fr) 6.5rem 2.4rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .billboardActions {
+    width: 100%;
+    padding: 0 0;
+    justify-content: center;
+  }
+
+  .page {
+    gap: 2.2rem;
+    padding-top: 1.6rem;
+  }
+
+  .billboard {
+    padding: 1.8rem 1.3rem;
+    border-radius: 22px;
+  }
+
+  .billboardArt {
+    min-height: 12rem;
+  }
+
+  .primaryBtn,
+  .ghostBtn {
+    width: 100%;
+  }
+
+  .shelf {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 0.9rem;
+  }
+
+  .trackRow {
+    grid-template-columns: 1.8rem minmax(0, 1fr) 2.4rem;
+    gap: 0.7rem;
+    padding: 0.65rem 0.8rem;
+  }
+
+  .trackDate {
+    display: none;
+  }
+
+  .trackCover {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .vinyl,
+  .vinylRing,
+  .eqBig span,
+  .eq span,
+  .signalDot::before {
+    animation: none;
+  }
+
+  .vinyl {
+    animation-play-state: paused;
+  }
+}
