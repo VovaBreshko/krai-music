@@ -119,6 +119,11 @@ body {
 }
 `;
 
+// Sveltia CMS поддерживает превью-шаблоны в том же стиле, что Decap:
+//   - entry — Immutable Map (entry.get('data') → Map полей)
+//   - getAsset(path) — возвращает объект ассета с полем url
+//   - h и createClass доступны глобально, поэтому существующие превью
+//     работают без переписывания на JSX.
 CMS.registerPreviewStyle(cssText, { raw: true });
 
 function CalendarIcon(props) {
@@ -204,7 +209,9 @@ function PhoneIcon(props) {
 
 function getImageUrl(asset) {
   if (!asset) return '';
-  return asset.toString();
+  // В Sveltia getAsset возвращает объект с url; как запасной вариант — toString.
+  if (asset.url) return asset.url;
+  return typeof asset.toString === 'function' ? asset.toString() : '';
 }
 
 var SOCIAL_ICON_PATH = {

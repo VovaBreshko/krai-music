@@ -1,11 +1,10 @@
 backend:
   name: github
-  repo: sjmaks/krai-music
+  repo: vovabreshko/krai-music
   branch: main
-  base_url: https://sveltia-cms-auth.kraev-maksim2003.workers.dev/
 
-site_url: https://sjmaks.github.io/krai-music
-display_url: https://sjmaks.github.io/krai-music
+site_url: https://vovabreshko.github.io/krai-music
+display_url: https://vovabreshko.github.io/krai-music
 media_folder: public/media
 public_folder: /media
 

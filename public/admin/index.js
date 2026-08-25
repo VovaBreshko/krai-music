@@ -1,5 +1,3 @@
-import { Widget as IdWidget } from 'decap-cms-widget-id';
-import { ru } from 'decap-cms-locales';
-
-CMS.registerWidget(IdWidget);
-CMS.registerLocale('ru', ru);
+// Расширения Decap (decap-cms-widget-id, decap-cms-locales) не нужны:
+// Sveltia CMS включает локаль 'ru' и uuid-виджет из коробки.
+// Этот файл оставлен как точка расширения для будущих кастомных виджетов.
