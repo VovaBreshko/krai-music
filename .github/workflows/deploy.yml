@@ -33,4 +33,6 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
+          provenance: false
+          sbom: false
           tags: ${{ vars.CR_URI }}/react-site:v.${{ github.sha }}
