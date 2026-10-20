@@ -4,8 +4,8 @@
   "authors": [
     "artist_0d22887c-9967-481d-9c99-c4e94485cced"
   ],
-  "cover": "/media/9snfeh_3c5e.jpg",
-  "audio": "/media/tarantyl-город-мёртвых-звёзд.mp3",
+  "cover": "https://krai-music.s3.cloud.ru/uploads/9snfeh_3c5e.jpg",
+  "audio": "https://krai-music.s3.cloud.ru/uploads/tarantyl-город-мёртвых-звёзд.mp3",
   "releaseDate": "2026-08-20T13:50:00.000+07:00",
   "description": "а"
 }
