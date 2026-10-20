@@ -4,8 +4,8 @@
   "authors": [
     "artist_0d22887c-9967-481d-9c99-c4e94485cced"
   ],
-  "cover": "/media/eot1e2khlg.jpg",
-  "audio": "/media/tarantyl-кажется-prod.-almighti-.mp3",
+  "cover": "https://krai-music.s3.cloud.ru/uploads/eot1e2khlg.jpg",
+  "audio": "https://krai-music.s3.cloud.ru/uploads/tarantyl-кажется-prod.-almighti-.mp3",
   "releaseDate": "2026-08-20T13:48:00.000+07:00",
   "description": "F"
 }

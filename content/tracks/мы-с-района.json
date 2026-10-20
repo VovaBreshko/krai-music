@@ -4,8 +4,8 @@
   "authors": [
     "artist_04fe2e26-09a3-4505-8690-4f40fb327199"
   ],
-  "cover": "/media/alink-мы-с-района.jpg",
-  "audio": "/media/alink-мы-с-района-prod.-by-black-water-.mp3",
+  "cover": "https://krai-music.s3.cloud.ru/uploads/alink-мы-с-района.jpg",
+  "audio": "https://krai-music.s3.cloud.ru/uploads/alink-мы-с-района-prod.-by-black-water-.mp3",
   "releaseDate": "2026-08-03T20:26:00.000+07:00",
   "description": "Ваще разнос"
 }
