@@ -9,6 +9,15 @@ display_url: https://vovabreshko.github.io/krai-music
 media_folder: public/media
 public_folder: /media
 
+media_libraries:
+  aws_s3:
+    endpoint: https://s3.cloud.ru
+    region: ru-central-1
+    access_key_id: "TENANT_ID:KEY_ID"
+    bucket: site-media
+    prefix: uploads/
+    public_url: https://site-media.s3.cloud.ru
+
 locale: 'ru'
 
 collections:
