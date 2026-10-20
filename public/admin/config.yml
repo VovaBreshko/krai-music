@@ -16,8 +16,6 @@ media_libraries:
     prefix: uploads/
     public_url: https://krai-music.s3.cloud.ru
 
-locale: 'ru'
-
 collections:
   - name: artists
     label: Артисты
