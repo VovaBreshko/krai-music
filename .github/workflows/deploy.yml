@@ -27,12 +27,15 @@ jobs:
           username: ${{ secrets.EVO_CR_LOGIN }}
           password: ${{ secrets.EVO_CR_PWD }}
 
-      - name: Build and push image
+      - name: Build image locally
         uses: docker/build-push-action@v7
         with:
           context: .
           platforms: linux/amd64
-          push: true
+          load: true
           provenance: false
           sbom: false
           tags: ${{ vars.CR_URI }}/react-site:v.${{ github.sha }}
+
+      - name: Push image via Docker CLI
+        run: docker push "${{ vars.CR_URI }}/react-site:v.${{ github.sha }}"
