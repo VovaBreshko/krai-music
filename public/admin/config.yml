@@ -11,7 +11,7 @@ media_libraries:
   aws_s3:
     endpoint: https://s3.cloud.ru
     region: ru-central-1
-    access_key_id: "e8ca8771-9140-428d-8868-fca4ff0e409b:948be2c3b84436c4db14e1049e5a49cc"
+    access_key_id: e8ca8771-9140-428d-8868-fca4ff0e409b:59ea8fb40a4438f292d67fbe76c1ec98
     bucket: krai-music-bucket-cef93a
     prefix: uploads/
     public_url: https://krai-music.s3.cloud.ru
