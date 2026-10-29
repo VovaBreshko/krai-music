@@ -1,0 +1,14 @@
+{
+  "id": "event_117a3bf9-2181-450a-b5e0-2c5c1f8c3b6c",
+  "title": "Мега крутое тестовое мероприятие",
+  "description": "ЕСЛИ ЭТО СРАБОТАЕТ Я СДЕЛАЮ САЛЬТУХУ",
+  "image": "https://krai-music.s3.cloud.ru/uploads/2dd54cedbd9e83de5e377eccaab0ec58.jpg",
+  "date": "2026-10-29T14:11:00",
+  "location": "Я тебя могну",
+  "links": [
+    {
+      "label": "Победа",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    }
+  ]
+}
