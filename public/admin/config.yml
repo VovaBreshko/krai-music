@@ -9,12 +9,12 @@ display_url: https://www.krai-music.ru
 
 media_libraries:
   aws_s3:
-    endpoint: https://krai-music.s3.cloud.ru
+    endpoint: https://s3.cloud.ru
     region: ru-central-1
     access_key_id: e8ca8771-9140-428d-8868-fca4ff0e409b:59ea8fb40a4438f292d67fbe76c1ec98
     bucket: krai-music-bucket-cef93a
     prefix: uploads/
-    force_path_style: true
+    force_path_style: false
     public_url: https://krai-music.s3.cloud.ru
 
 collections:
