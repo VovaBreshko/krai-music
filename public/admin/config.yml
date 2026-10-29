@@ -4,8 +4,8 @@ backend:
   branch: main
   auth_methods: [token]
 
-site_url: https://vovabreshko.github.io/krai-music
-display_url: https://vovabreshko.github.io/krai-music
+site_url: https://www.krai-music.ru
+display_url: https://www.krai-music.ru
 
 media_libraries:
   aws_s3:
